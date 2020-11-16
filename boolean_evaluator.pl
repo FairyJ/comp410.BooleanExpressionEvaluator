@@ -51,18 +51,35 @@ or(true, _, true).
 or(false, false, false).
 
 % eval
-%
 % Takes the following:
 % 1.) A Boolean expression, using the representation previously described
 % 2.) A Boolean value, representing what the Boolean expression evaluates
 %     down to.
-%
+
 % You need to implement eval.  This should work in a similar manner as the
 % Boolean evaluator you previously implemented in Racket.
-%
+
 % My reference solution is 10 lines long; if you start needing a lot more
 % code than that, ask to make sure you're still on track.
-%
+
+eval(true,true).
+eval(false,false).
+eval(and(Expr1 , Expr2) , true):-
+    eval(Expr1 , true),
+    eval(Expr2 , true).
+eval(or(Expr1 , Expr2) , false):-
+    eval(Expr1 , false),
+    eval(expr2 , false).
+eval(or(Expr1 , Expr2) , true):-
+    eval(Expr1 , true) , 
+    eval(Expr2 , true);
+    eval(Expr1 , true) , 
+    eval(Expr2 , false);
+    eval(Expr1 , false) ,
+     eval(Expr2 , true).
+
+
+    
 
 % ---Begin Testing-Related Code---
 %

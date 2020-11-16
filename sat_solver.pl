@@ -51,6 +51,15 @@
 % My reference solution is 7 lines long; if you start needing a lot more
 % code than that, ask to make sure you're still on track.
 %
+isTrue(literal(true , positive)).
+isTrue(literal(fasle , negative)).
+isTrue(and(Expr1,Expr2)):-
+    %both are true
+    isTrue(Expr1),
+    isTrue(Expr2).
+isTrue(or(Expr1 , Expr2)):-
+    %one is true
+    isTrue(Expr1); isTrue(Expr2).
 
 % ---Begin Testing-Related Code---
 %
