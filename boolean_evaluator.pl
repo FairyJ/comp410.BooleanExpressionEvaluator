@@ -62,22 +62,34 @@ or(false, false, false).
 % My reference solution is 10 lines long; if you start needing a lot more
 % code than that, ask to make sure you're still on track.
 
-eval(true,true).
-eval(false,false).
-eval(and(Expr1 , Expr2) , true):-
-    eval(Expr1 , true),
-    eval(Expr2 , true).
-eval(or(Expr1 , Expr2) , false):-
-    eval(Expr1 , false),
-    eval(expr2 , false).
-eval(or(Expr1 , Expr2) , true):-
-    eval(Expr1 , true) , 
-    eval(Expr2 , true);
-    eval(Expr1 , true) , 
-    eval(Expr2 , false);
-    eval(Expr1 , false) ,
-     eval(Expr2 , true).
+% eval(true,true).
+% eval(false,false).
+% eval(and(Expr1 , Expr2) , true):-
+%     eval(Expr1 , true),
+%     eval(Expr2 , true).
+% eval(or(Expr1 , Expr2) , false):-
+%     eval(Expr1 , false),
+%     eval(expr2 , false).
+% eval(or(Expr1 , Expr2) , true):-
+%     eval(Expr1 , true) , 
+%     eval(Expr2 , true);
+%     eval(Expr1 , true) , 
+%     eval(Expr2 , false);
+%     eval(Expr1 , false) ,
+%      eval(Expr2 , true).
+eval(BooleanVal,BooleanVal).
 
+eval(and(Expr1, Expr2), Result) :-
+    eval(Expr1, Result1),
+    eval(Expr2, Result2),
+    and(Result1, Result2, ResultOfAnd),
+    eval(ResultOfAnd, Expr).
+
+eval(or(Expr1, Expr2), Result) :-
+    eval(Expr1, Result1),
+    eval(Expr2, Result2),
+    or(Result1, Result2, ResultOfOr),
+    eval(ResultOfOr, Result).
 
     
 
